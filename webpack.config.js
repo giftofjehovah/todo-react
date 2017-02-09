@@ -23,7 +23,8 @@ const config = {
   devServer: {
     contentBase: path.join(__dirname, 'src'),
     compress: true,
-    port: 8000
+    port: 8000,
+    historyApiFallback: true
   }
 }
 module.exports = config

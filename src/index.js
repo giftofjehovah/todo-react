@@ -7,6 +7,7 @@ import App from './components/App'
 import 'todomvc-app-css/index.css'
 
 const store = createStore(reducer)
+console.log(store.getState())
 const root = document.querySelector('#root')
 
 render(
