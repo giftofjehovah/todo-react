@@ -10,7 +10,8 @@ const config = {
   module: {
     rules: [
       {test: /\.(js|jsx)$/, use: 'babel-loader'},
-      {test: /\.html$/, use: 'html-loader'}
+      {test: /\.html$/, use: 'html-loader'},
+      {test: /\.css$/, use: [ 'style-loader', 'css-loader' ]}
     ]
   },
   plugins: [

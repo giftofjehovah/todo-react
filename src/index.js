@@ -4,6 +4,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import App from './components/App'
+import 'todomvc-app-css/index.css'
 
 const store = createStore(reducer)
 const root = document.querySelector('#root')
