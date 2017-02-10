@@ -10,7 +10,7 @@ const App = ({todos, actions}) => (
   <div>
     <Header addTodo={actions.addTodo} />
     <Main todos={todos} actions={actions} />
-    <Footer todos={todos} clearAllTodos={actions.clearAllTodos} />
+    {todos.length ? <Footer todos={todos} clearAllTodos={actions.clearAllTodos} /> : ''}
   </div>
 )
 
