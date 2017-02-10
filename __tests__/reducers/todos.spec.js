@@ -59,7 +59,6 @@ describe('todo reducers', () => {
 })
 
 describe('todos reducers', () => {
-
   it('should handle initial state', () => {
     const expectedResult = [{
       text: 'Use Redux',
