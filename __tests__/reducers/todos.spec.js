@@ -248,7 +248,7 @@ describe('todos reducers', () => {
       }
     ]
     const action = {
-      type: types.CLEAR_ALL_TODO
+      type: types.CLEAR_ALL_TODOS
     }
     const expectedResult = []
     expect(todos(currentState, action)).toEqual(expectedResult)

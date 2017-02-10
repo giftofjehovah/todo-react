@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 class Footer extends React.Component {
+  static get propTypes () {
+    return {
+      todos: PropTypes.array.isRequired,
+      clearAllTodos: PropTypes.func.isRequired
+    }
+  }
+
+  getTodosUndone (state) {
+    return state.reduce((a, b) => b.completed ? a : a + 1, 0)
+  }
+
   render () {
     return (
       <div className='footer'>
         <span className='todo-count'>
-          <strong>1</strong>
+          <strong>{this.getTodosUndone(this.props.todos)}</strong>
           <span> item</span>
           <span> left</span>
         </span>
@@ -16,7 +27,7 @@ class Footer extends React.Component {
             <a href='#/completed'>Completed</a>
           </li>
         </ul>
-        <button className='clear-completed'>Clear</button>
+        <button className='clear-completed' onClick={this.props.clearAllTodos}>Clear</button>
       </div>
     )
   }

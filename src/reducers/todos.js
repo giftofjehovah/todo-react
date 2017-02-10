@@ -4,7 +4,7 @@ import { ADD_TODO,
          MARK_TODO_UNDONE,
          MARK_ALL_TODOS_DONE,
          MARK_ALL_TODOS_UNDONE,
-         CLEAR_ALL_TODO } from '../constants/actionTypes'
+         CLEAR_ALL_TODOS } from '../constants/actionTypes'
 const initialState = [
   {
     text: 'Use Redux',
@@ -42,7 +42,7 @@ export function todos (state = initialState, action) {
       return state.map(x => Object.assign({}, x, {completed: true}))
     case MARK_ALL_TODOS_UNDONE:
       return state.map(x => Object.assign({}, x, {completed: false}))
-    case CLEAR_ALL_TODO:
+    case CLEAR_ALL_TODOS:
       return []
     default:
       return state
