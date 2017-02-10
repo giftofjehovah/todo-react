@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --watch --hot",
-    "build": "webpack --progress -p",
+    "build": "jest && flow && webpack --progress -p",
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
