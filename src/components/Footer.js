@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react'
+import {FILTER_ALL, FILTER_DONE, FILTER_ACTIVE} from '../constants/actionTypes'
 
 class Footer extends React.Component {
   static get propTypes () {
     return {
       todos: PropTypes.array.isRequired,
-      clearAllTodos: PropTypes.func.isRequired
+      actions: PropTypes.object.isRequired,
+      filter: PropTypes.string.isRequired
     }
   }
 
@@ -22,12 +24,18 @@ class Footer extends React.Component {
         </span>
         <ul className='filters'>
           <li>
-            <a href='#/all'>All</a>
-            <a href='#/active'>Active</a>
-            <a href='#/completed'>Completed</a>
+            <a href='#/all'
+              className={this.props.filter === FILTER_ALL ? 'selected' : ''}
+              onClick={this.props.actions.filterAll}>All</a>
+            <a href='#/active'
+              className={this.props.filter === FILTER_ACTIVE ? 'selected' : ''}
+              onClick={this.props.actions.filterActive}>Active</a>
+            <a href='#/completed'
+              className={this.props.filter === FILTER_DONE ? 'selected' : ''}
+              onClick={this.props.actions.filterDone}>Completed</a>
           </li>
         </ul>
-        <button className='clear-completed' onClick={this.props.clearAllTodos}>Clear</button>
+        <button className='clear-completed' onClick={this.props.actions.clearAllTodos}>Clear</button>
       </div>
     )
   }
