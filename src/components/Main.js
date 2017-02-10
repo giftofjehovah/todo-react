@@ -2,6 +2,12 @@ import React, {PropTypes} from 'react'
 import Todo from './Todo'
 import {FILTER_ALL, FILTER_DONE, FILTER_ACTIVE} from '../constants/actionTypes'
 
+const TODO_FILTERS = {
+  [FILTER_ALL]: () => true,
+  [FILTER_ACTIVE]: todo => !todo.completed,
+  [FILTER_DONE]: todo => todo.completed
+}
+
 class Main extends React.Component {
   static get propTypes () {
     return {
@@ -13,14 +19,8 @@ class Main extends React.Component {
 
   renderTodoList (state, actions, filter) {
     return state
-      .filter((item) => this.filterList(item, filter))
+      .filter(TODO_FILTERS[filter])
       .map(x => <Todo key={x.id} todo={x} {...actions} />)
-  }
-
-  filterList (todo, filter) {
-    if (filter === FILTER_ALL) return true
-    if (filter === FILTER_DONE) return todo.completed
-    if (filter === FILTER_ACTIVE) return !todo.completed
   }
 
   handleToggle (event, actions) {
