@@ -7,11 +7,12 @@ import App from './components/App'
 import 'todomvc-app-css/index.css'
 
 const store = createStore(reducer)
-console.log(store.getState())
-const root = document.querySelector('#root')
+console.log('initial state: ', store.getState())
+store.subscribe(() => console.log('current state', store.getState()))
+const app = document.querySelector('#app')
 
 render(
   <Provider store={store}>
     <App />
   </Provider>,
-  root)
+  app)
