@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react'
 import Header from '../components/Header'
-import Main from '../components/Main'
 import Footer from '../components/Footer'
 import actions from '../actions/index'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Main from '../containers/Main'
 
 const App = ({todos, filter, actions}) => (
   <div>
     <Header addTodo={actions.addTodo} />
-    <Main todos={todos} actions={actions} filter={filter} />
+    <Main />
     {todos.length ? <Footer todos={todos} actions={actions} filter={filter} /> : ''}
   </div>
 )
