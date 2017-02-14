@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Footer from '../containers/Footer'
 import actions from '../actions/index'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -10,7 +10,7 @@ const App = ({todos, filter, actions}) => (
   <div>
     <Header addTodo={actions.addTodo} />
     <Main />
-    {todos.length ? <Footer todos={todos} actions={actions} filter={filter} /> : ''}
+    {todos.length ? <Footer /> : ''}
   </div>
 )
 

@@ -4,21 +4,17 @@ import {FILTER_ALL, FILTER_DONE, FILTER_ACTIVE} from '../constants/actionTypes'
 class Footer extends React.Component {
   static get propTypes () {
     return {
-      todos: PropTypes.array.isRequired,
+      todoLeft: PropTypes.number.isRequired,
       actions: PropTypes.object.isRequired,
       filter: PropTypes.string.isRequired
     }
-  }
-
-  getTodosUndone (state) {
-    return state.reduce((a, b) => b.completed ? a : a + 1, 0)
   }
 
   render () {
     return (
       <div className='footer'>
         <span className='todo-count'>
-          <strong>{this.getTodosUndone(this.props.todos)}</strong>
+          <strong>{this.props.todoLeft}</strong>
           <span> item</span>
           <span> left</span>
         </span>
