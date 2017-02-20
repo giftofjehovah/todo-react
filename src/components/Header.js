@@ -17,7 +17,7 @@ class Header extends React.Component {
     }
   }
   componentDidMount () {
-    // this.props.getQuote(quotes)
+    this.props.getQuote(quotes)
   }
   handleChange (event) {
     this.setState({ text: event.target.value })
