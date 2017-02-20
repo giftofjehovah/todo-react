@@ -1,5 +1,5 @@
 const quotes = {
-  get: () => window.fetch('http://quotes.rest/qod').then(res => res.json())
+  get: () => window.fetch('https://quotes.rest/qod').then(res => res.json())
 }
 
 export default quotes
