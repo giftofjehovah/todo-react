@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import {FILTER_ALL, FILTER_DONE, FILTER_ACTIVE} from '../constants/actionTypes'
 
-class Footer extends React.Component {
+class Footer extends React.PureComponent {
   static get propTypes () {
     return {
       todoLeft: PropTypes.number.isRequired,
