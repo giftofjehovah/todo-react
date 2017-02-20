@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import quotes from '../api/quotes'
 
 class Header extends React.Component {
   constructor () {
@@ -14,7 +15,7 @@ class Header extends React.Component {
     }
   }
   componentDidMount () {
-    this.props.getQuote()
+    this.props.getQuote(quotes.get)
   }
   handleChange (event) {
     this.setState({ text: event.target.value })
