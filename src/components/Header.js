@@ -23,7 +23,7 @@ class Header extends React.Component {
     this.setState({ text: event.target.value })
   }
   handleSubmit (event) {
-    if (event.keyCode === 13) this.props.addTodo(this.state.text) && this.setState({ text: '' })
+    if (event.keyCode === 13 && this.state.text.length > 0) this.props.addTodo(this.state.text) && this.setState({ text: '' })
   }
   render () {
     return (
