@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
-  entry: './src/index.js',
+  entry: ['whatwg-fetch', './src/index.js'],
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
