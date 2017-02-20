@@ -20,7 +20,7 @@ class TodoList extends React.Component {
   }
 
   checkForAllCompleted (state) {
-    return state.length ? state.every(x => x.get('completed')) : false
+    return state.size ? state.every(x => x.get('completed')) : false
   }
 
   render () {

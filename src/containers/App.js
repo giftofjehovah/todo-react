@@ -21,6 +21,6 @@ App.propTypes = {
   actions: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({ todos: state.todos, filter: state.filter, quote: state.quote })
+const mapStateToProps = state => ({ todos: state.get('todos'), filter: state.get('filter'), quote: state.get('quote') })
 const mapDispatchToProps = dispatch => ({actions: bindActionCreators(actions, dispatch)})
 export default connect(mapStateToProps, mapDispatchToProps)(App)
