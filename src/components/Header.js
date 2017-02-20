@@ -7,6 +7,8 @@ class Header extends React.Component {
     this.state = {
       text: ''
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   static get propTypes () {
     return {
@@ -15,7 +17,7 @@ class Header extends React.Component {
     }
   }
   componentDidMount () {
-    this.props.getQuote(quotes)
+    // this.props.getQuote(quotes)
   }
   handleChange (event) {
     this.setState({ text: event.target.value })
@@ -31,8 +33,8 @@ class Header extends React.Component {
         <input
           type='text'
           className='new-todo'
-          onChange={this.handleChange.bind(this)}
-          onKeyDown={this.handleSubmit.bind(this)}
+          onChange={this.handleChange}
+          onKeyDown={this.handleSubmit}
           value={this.state.text} />
       </div>
     )
