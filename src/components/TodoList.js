@@ -1,17 +1,18 @@
 import React, {PropTypes} from 'react'
 import Todo from './Todo'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 class TodoList extends React.Component {
   static get propTypes () {
     return {
-      todos: PropTypes.array.isRequired,
+      todos: ImmutablePropTypes.list.isRequired,
       actions: PropTypes.object.isRequired
     }
   }
 
   renderTodoList (state, actions) {
     return state
-      .map(x => <Todo key={x.id} todo={x} {...actions} />)
+      .map(x => <Todo key={x.get('id')} todo={x} {...actions} />)
   }
 
   handleToggle (event, actions) {
@@ -19,7 +20,7 @@ class TodoList extends React.Component {
   }
 
   checkForAllCompleted (state) {
-    return state.length ? state.every(x => x.completed) : false
+    return state.size ? state.every(x => x.get('completed')) : false
   }
 
   render () {

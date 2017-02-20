@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --watch --hot",
-    "build": "jest && flow && webpack --progress -p",
+    "build": "jest && flow && webpack --progress -p && mv ./dist/index.html . && mv ./dist/bundle.js .",
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
@@ -14,8 +14,10 @@
     "immutable": "^3.8.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
+    "redux-immutable": "^3.1.0",
     "redux-observable": "^0.13.0",
     "reselect": "^2.5.4",
     "rxjs": "^5.1.1",

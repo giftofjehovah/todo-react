@@ -5,25 +5,27 @@ import { ADD_TODO,
          MARK_ALL_TODOS_DONE,
          MARK_ALL_TODOS_UNDONE,
          CLEAR_ALL_TODOS } from '../constants/actionTypes'
-const initialState = [
-  {
+import Immutable from 'immutable'
+const initialState = Immutable.List([
+  Immutable.Map({
     text: 'Use Redux',
     completed: false,
     id: 0
-  }
-]
+  })
+])
+
 export function todo (state, action) {
   switch (action.type) {
     case ADD_TODO:
-      return {
+      return Immutable.Map({
         text: action.text,
         completed: false,
-        id: state.length ? [...state].shift().id + 1 : 0
-      }
+        id: state.size ? state.first().get('id') + 1 : 0
+      })
     case MARK_TODO_DONE:
-      return Object.assign({}, state, {completed: true})
+      return state.merge(Immutable.Map({completed: true}))
     case MARK_TODO_UNDONE:
-      return Object.assign({}, state, {completed: false})
+      return state.merge(Immutable.Map({completed: false}))
     default:
       return state
   }
@@ -31,19 +33,19 @@ export function todo (state, action) {
 export function todos (state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
-      return [todo(state, action), ...state]
+      return state.unshift(todo(state, action))
     case DELETE_TODO:
-      return state.filter(x => x.id !== action.id)
+      return state.filter(x => x.get('id') !== action.id)
     case MARK_TODO_DONE:
-      return state.map(x => x.id === action.id ? todo(x, action) : x)
+      return state.map(x => x.get('id') === action.id ? todo(x, action) : x)
     case MARK_TODO_UNDONE:
-      return state.map(x => x.id === action.id ? todo(x, action) : x)
+      return state.map(x => x.get('id') === action.id ? todo(x, action) : x)
     case MARK_ALL_TODOS_DONE:
-      return state.map(x => Object.assign({}, x, {completed: true}))
+      return state.map(x => x.merge(Immutable.Map({completed: true})))
     case MARK_ALL_TODOS_UNDONE:
-      return state.map(x => Object.assign({}, x, {completed: false}))
+      return state.map(x => x.merge(Immutable.Map({completed: false})))
     case CLEAR_ALL_TODOS:
-      return []
+      return Immutable.List()
     default:
       return state
   }
