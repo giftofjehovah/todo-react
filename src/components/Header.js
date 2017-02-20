@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import quotes from '../api/quotes'
 
 class Header extends React.Component {
   constructor () {
@@ -6,11 +7,17 @@ class Header extends React.Component {
     this.state = {
       text: ''
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   static get propTypes () {
     return {
-      addTodo: PropTypes.func.isRequired
+      addTodo: PropTypes.func.isRequired,
+      getQuote: PropTypes.func.isRequired
     }
+  }
+  componentDidMount () {
+    // this.props.getQuote(quotes)
   }
   handleChange (event) {
     this.setState({ text: event.target.value })
@@ -22,11 +29,12 @@ class Header extends React.Component {
     return (
       <div className='header'>
         <h1>todos</h1>
+        <p>{this.props.quote}</p>
         <input
           type='text'
           className='new-todo'
-          onChange={this.handleChange.bind(this)}
-          onKeyDown={this.handleSubmit.bind(this)}
+          onChange={this.handleChange}
+          onKeyDown={this.handleSubmit}
           value={this.state.text} />
       </div>
     )

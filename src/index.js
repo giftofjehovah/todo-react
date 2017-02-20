@@ -1,16 +1,20 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import { createEpicMiddleware } from 'redux-observable'
 import reducer from './reducers'
+import epic from './epics'
 import App from './containers/App'
 import 'todomvc-app-css/index.css'
+import './styles.css'
 
-const store = createStore(reducer)
-console.log('initial state: ', store.getState())
-store.subscribe(() => console.log('current state', store.getState()))
+const epicMiddleware = createEpicMiddleware(epic)
+const store = createStore(reducer, applyMiddleware(epicMiddleware))
 const app = document.querySelector('#app')
-
+store.subscribe(() => {
+  console.log('state is changing', store.getState())
+})
 render(
   <Provider store={store}>
     <App />
