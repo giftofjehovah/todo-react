@@ -4,6 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import getFilteredTodo from '../selectors/todoList'
 
-const mapStateToProps = state => ({ todos: getFilteredTodo(state).toJS() })
+const mapStateToProps = state => ({ todos: getFilteredTodo(state) })
 const mapDispatchToProps = dispatch => ({actions: bindActionCreators(actions, dispatch)})
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
