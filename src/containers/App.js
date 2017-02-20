@@ -6,9 +6,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Main from '../containers/Main'
 
-const App = ({todos, filter, actions}) => (
+const App = ({todos, filter, quote, actions}) => (
   <div>
-    <Header addTodo={actions.addTodo} />
+    <Header addTodo={actions.addTodo} getQuote={actions.getQuote} quote={quote} />
     <Main />
     {todos.length ? <Footer /> : ''}
   </div>
@@ -17,9 +17,10 @@ const App = ({todos, filter, actions}) => (
 App.propTypes = {
   todos: PropTypes.array.isRequired,
   filter: PropTypes.string.isRequired,
+  quote: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({ todos: state.todos, filter: state.filter })
+const mapStateToProps = state => ({ todos: state.todos, filter: state.filter, quote: state.quote })
 const mapDispatchToProps = dispatch => ({actions: bindActionCreators(actions, dispatch)})
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -9,8 +9,12 @@ class Header extends React.Component {
   }
   static get propTypes () {
     return {
-      addTodo: PropTypes.func.isRequired
+      addTodo: PropTypes.func.isRequired,
+      getQuote: PropTypes.func.isRequired
     }
+  }
+  componentDidMount () {
+    this.props.getQuote()
   }
   handleChange (event) {
     this.setState({ text: event.target.value })
@@ -22,6 +26,7 @@ class Header extends React.Component {
     return (
       <div className='header'>
         <h1>todos</h1>
+        <p>{this.props.quote}</p>
         <input
           type='text'
           className='new-todo'
