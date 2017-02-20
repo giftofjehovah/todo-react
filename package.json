@@ -21,7 +21,8 @@
     "redux-observable": "^0.13.0",
     "reselect": "^2.5.4",
     "rxjs": "^5.1.1",
-    "todomvc-app-css": "^2.0.6"
+    "todomvc-app-css": "^2.0.6",
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
