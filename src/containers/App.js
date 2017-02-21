@@ -36,7 +36,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Header addTodo={this.props.actions.addTodo} getQuote={this.props.actions.getQuote} quote={this.props.quote} />
+        <Header actions={this.props.actions} inputText={this.props.inputText} getQuote={this.props.actions.getQuote} quote={this.props.quote} />
         <Main />
         {this.props.todos.size ? <Footer /> : ''}
       </div>
@@ -44,6 +44,6 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ todos: state.get('todos'), filter: state.get('filter'), quote: state.get('quote') })
+const mapStateToProps = state => ({ todos: state.get('todos'), filter: state.get('filter'), quote: state.get('quote'), inputText: state.get('input') })
 const mapDispatchToProps = dispatch => ({actions: bindActionCreators(actions, dispatch)})
 export default connect(mapStateToProps, mapDispatchToProps)(App)
