@@ -4,26 +4,25 @@ import quotes from '../api/quotes'
 class Header extends React.Component {
   constructor () {
     super()
-    this.state = {
-      text: ''
-    }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   static get propTypes () {
     return {
-      addTodo: PropTypes.func.isRequired,
-      getQuote: PropTypes.func.isRequired
+      actions: PropTypes.object.isRequired,
+      getQuote: PropTypes.func.isRequired,
+      quote: PropTypes.string.isRequired,
+      inputText: PropTypes.string.isRequired
     }
   }
   componentDidMount () {
     this.props.getQuote(quotes)
   }
   handleChange (event) {
-    this.setState({ text: event.target.value })
+    this.props.actions.textInput(event.target.value)
   }
   handleSubmit (event) {
-    if (event.keyCode === 13 && this.state.text.length > 0) this.props.addTodo(this.state.text) && this.setState({ text: '' })
+    if (event.keyCode === 13 && this.props.inputText.length > 0) this.props.actions.addTodo(this.props.inputText) && this.props.actions.textInput('')
   }
   render () {
     return (
@@ -35,7 +34,7 @@ class Header extends React.Component {
           className='new-todo'
           onChange={this.handleChange}
           onKeyDown={this.handleSubmit}
-          value={this.state.text} />
+          value={this.props.inputText} />
       </div>
     )
   }
