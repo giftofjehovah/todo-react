@@ -14,9 +14,18 @@ describe('App components', () => {
     renderer = ReactTestUtils.createRenderer()
     renderer.render(<Footer {...props} />)
     result = renderer.getRenderOutput()
+    console.log(result.props.children[0])
   })
 
   it('type should be div', () => {
     expect(result.type).toBe('div')
+  })
+
+  it('class should be footer', () => {
+    expect(result.props.className).toBe('footer')
+  })
+
+  it('class should have three children', () => {
+    expect(result.props.children.length).toBe(3)
   })
 })
