@@ -14,7 +14,6 @@ describe('App components', () => {
     renderer = ReactTestUtils.createRenderer()
     renderer.render(<Footer {...props} />)
     result = renderer.getRenderOutput()
-    console.log(result.props.children[0])
   })
 
   it('type should be div', () => {
