@@ -5,14 +5,13 @@ const quotes = {
 async function getQuote (beforeAction, successAction, errorAction) {
   beforeAction()
   const query = window.fetch('https://quotes.rest/qod')
-  let result
-  try {
-    result = await query.then(res => res.json()).then(data => data.contents.quotes[0].quote)
-    successAction(result)
-  } catch (e) {
-    errorAction(e)
-  }
-  return result
+    .then(res => res.json())
+    .then(data => [null, data.contents.quotes[0].quote])
+    .catch(err => [err])
+
+  const [error, result] = await query
+  if (error) return errorAction(error)
+  successAction(result)
 }
 
 export default quotes

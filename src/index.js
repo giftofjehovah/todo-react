@@ -1,10 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, compose } from 'redux'
 import { Provider } from 'react-redux'
-import { createEpicMiddleware } from 'redux-observable'
 import reducer from './reducers'
-import epic from './epics'
 import App from './containers/App'
 import Immutable from 'immutable'
 import 'todomvc-app-css/index.css'
@@ -17,8 +15,7 @@ function getStateFromLocalStorage () {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const epicMiddleware = createEpicMiddleware(epic)
-const store = createStore(reducer, getStateFromLocalStorage(), composeEnhancers(applyMiddleware(epicMiddleware)))
+const store = createStore(reducer, getStateFromLocalStorage(), composeEnhancers())
 const app = document.querySelector('#app')
 store.subscribe(() => {
   console.log('state is changing', store.getState())
