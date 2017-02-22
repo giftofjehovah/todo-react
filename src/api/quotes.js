@@ -11,7 +11,7 @@ async function getQuote (beforeAction, successAction, errorAction) {
 
   const [error, result] = await query
   if (error) return errorAction(error)
-  successAction(result)
+  return successAction(result)
 }
 
 export default quotes
