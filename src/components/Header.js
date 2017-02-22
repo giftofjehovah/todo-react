@@ -16,7 +16,8 @@ class Header extends React.Component {
     }
   }
   componentDidMount () {
-    this.props.getQuote(quotes)
+    const dummyAction = () => ({type: 'HI'})
+    quotes.get(dummyAction, this.props.actions.updateQuoteToState, dummyAction)
   }
   handleChange (event) {
     this.props.actions.textInput(event.target.value)
