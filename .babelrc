@@ -1,4 +1,4 @@
 {
   "presets": ["es2015", "react"],
-  "plugins": ["async-to-promises"]
+  "plugins": ["async-to-promises", "transform-object-rest-spread"]
 }

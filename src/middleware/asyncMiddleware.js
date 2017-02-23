@@ -1,11 +1,22 @@
 const asyncMiddleware = ({dispatch}) => (next) => (action) => {
-  if (action.async && typeof action.async === 'function' && !action.status) {
-    const pendingAction = Object.assign({}, action, {status: 'PENDING'})
-    const successAction = (data) => dispatch(Object.assign({}, action, {status: 'SUCCESS', data}))
-    const errorAction = (error) => dispatch(Object.assign({}, action, {status: 'ERROR', error}))
+  if (checkAsyncActions(action)) {
+    const [pendingAction, successDispatch, errorDispatch] = [
+      Object.assign({...action, status: 'PENDING'}),
+      (data) => dispatch({...action, status: 'SUCCESS', data}),
+      (error) => dispatch({...action, status: 'ERROR', error})
+    ]
     next(pendingAction)
-    action.async(successAction, errorAction)
+    return action.async(successDispatch, errorDispatch)
   }
-  return action
+  return next(action)
+}
+
+function checkAsyncActions (action) {
+  return action.async && typeof action.async === 'function' && !action.status
+}
+
+export const actionsLogger = ({dispatch}) => (next) => (action) => {
+  console.log(action)
+  return next(action)
 }
 export default asyncMiddleware
