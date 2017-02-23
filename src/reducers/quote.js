@@ -1,12 +1,10 @@
-import { UPDATE_QUOTE_TO_STATE } from '../constants/actionTypes'
+import { GET_QUOTE } from '../constants/actionTypes'
 
 const initialState = 'loading quote...'
 
 export default function quote (state = initialState, action) {
-  switch (action.type) {
-    case UPDATE_QUOTE_TO_STATE:
-      return action.quote
-    default:
-      return state
+  if (action.type === GET_QUOTE && action.status === 'SUCCESS') {
+    return action.data
   }
+  return state
 }

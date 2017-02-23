@@ -1,4 +1,4 @@
 import * as types from '../constants/actionTypes'
+import * as quotes from '../api/quotes'
 
-export const getQuote = (api) => ({ type: types.GET_QUOTE, api })
-export const updateQuoteToState = (quote) => ({ type: types.UPDATE_QUOTE_TO_STATE, quote })
+export const getQuote = () => ({type: types.GET_QUOTE, async: quotes.get})

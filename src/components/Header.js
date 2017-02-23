@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react'
-import quotes from '../api/quotes'
 
 class Header extends React.Component {
   constructor () {
@@ -16,8 +15,7 @@ class Header extends React.Component {
     }
   }
   componentDidMount () {
-    const dummyAction = () => ({type: 'HI'})
-    quotes.get(dummyAction, this.props.actions.updateQuoteToState, dummyAction)
+    this.props.actions.getQuote()
   }
   handleChange (event) {
     this.props.actions.textInput(event.target.value)
