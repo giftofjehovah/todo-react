@@ -1,7 +1,7 @@
 const asyncMiddleware = ({dispatch}) => (next) => (action) => {
   if (checkAsyncActions(action)) {
     const [pendingAction, successDispatch, errorDispatch] = [
-      Object.assign({...action, status: 'PENDING'}),
+      {...action, status: 'PENDING'},
       (data) => dispatch({...action, status: 'SUCCESS', data}),
       (error) => dispatch({...action, status: 'ERROR', error})
     ]
