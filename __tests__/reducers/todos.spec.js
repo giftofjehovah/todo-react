@@ -4,6 +4,23 @@ import * as types from '../../src/constants/actionTypes'
 import Immutable from 'immutable'
 
 describe('todo reducers', () => {
+  it('should handle default state', () => {
+    const currentState = Immutable.fromJS([{
+      text: 'This is the first todo',
+      completed: true,
+      id: 0
+    }])
+    const action = {
+      type: ''
+    }
+    const expectedResult = Immutable.fromJS([{
+      text: 'This is the first todo',
+      completed: true,
+      id: 0
+    }])
+    expect(todo(currentState, action)).toEqual(expectedResult)
+  })
+
   it('should handle ADD_TODO', () => {
     const currentState = Immutable.fromJS([{
       text: 'This is the first todo',
