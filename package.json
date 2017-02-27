@@ -14,7 +14,8 @@
   "jest": {
     "collectCoverageFrom": ["**/*.{js,jsx}"],
     "coverageDirectory": "./coverage/",
-    "coveragePathIgnorePatterns": ["./coverage", "webpack.config.js"]
+    "coveragePathIgnorePatterns": ["./coverage", "webpack.config.js"],
+    "notify": true
   },
   "dependencies": {
     "immutable": "^3.8.1",
