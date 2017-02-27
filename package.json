@@ -8,7 +8,12 @@
     "dev": "webpack-dev-server --watch --hot",
     "build": "jest && flow && webpack --progress -p && mv ./dist/index.html . && mv ./dist/bundle.js .",
     "test": "jest",
+    "cov": "jest --coverage",
     "test:watch": "npm test -- --watch"
+  },
+  "jest": {
+    "collectCoverageFrom": ["**/*.{js,jsx}"],
+    "coverageDirectory": "./coverage/"
   },
   "dependencies": {
     "immutable": "^3.8.1",
