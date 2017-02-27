@@ -3,6 +3,15 @@ import quote from '../../src/reducers/quote'
 import { UPDATE_QUOTE_TO_STATE } from '../../src/constants/actionTypes'
 
 describe('quote reducers', () => {
+  it('should handle default state', () => {
+    const currentState = undefined
+    const action = {
+      type: ''
+    }
+    const expectedResult = 'loading quote...'
+    expect(quote(currentState, action)).toEqual(expectedResult)
+  })
+
   it('should handle UPDATE_QUOTE_TO_STATE', () => {
     const currentState = ''
     const action = {

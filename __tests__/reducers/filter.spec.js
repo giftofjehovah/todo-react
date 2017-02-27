@@ -3,6 +3,15 @@ import filter from '../../src/reducers/filter'
 import * as types from '../../src/constants/actionTypes'
 
 describe('filter reducers', () => {
+  it('should handle default state', () => {
+    const currentState = undefined
+    const expectedResult = 'FILTER_ALL'
+    const action = {
+      type: ''
+    }
+    expect(filter(currentState, action)).toEqual(expectedResult)
+  })
+
   it('should handle FILTER_ALL', () => {
     const currentState = ''
     const action = {
