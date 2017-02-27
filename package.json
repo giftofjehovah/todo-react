@@ -13,7 +13,8 @@
   },
   "jest": {
     "collectCoverageFrom": ["**/*.{js,jsx}"],
-    "coverageDirectory": "./coverage/"
+    "coverageDirectory": "./coverage/",
+    "coveragePathIgnorePatterns": ["./coverage", "webpack.config.js"]
   },
   "dependencies": {
     "immutable": "^3.8.1",
