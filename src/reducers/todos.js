@@ -15,38 +15,29 @@ const initialState = Immutable.List([
 ])
 
 export function todo (state, action) {
-  switch (action.type) {
-    case ADD_TODO:
-      return Immutable.Map({
-        text: action.text,
-        completed: false,
-        id: state.size ? state.first().get('id') + 1 : 0
-      })
-    case MARK_TODO_DONE:
-      return state.merge(Immutable.Map({completed: true}))
-    case MARK_TODO_UNDONE:
-      return state.merge(Immutable.Map({completed: false}))
-    default:
-      return state
+  const reducers = {
+    [ADD_TODO]: () => Immutable.Map({
+      text: action.text,
+      completed: false,
+      id: state.size ? state.first().get('id') + 1 : 0
+    }),
+    [MARK_TODO_DONE]: () => state.merge(Immutable.Map({completed: true})),
+    [MARK_TODO_UNDONE]: () => state.merge(Immutable.Map({completed: false})),
+    DEFAULT: () => state
   }
+  return (reducers[action.type] || reducers.DEFAULT)()
 }
+
 export function todos (state = initialState, action) {
-  switch (action.type) {
-    case ADD_TODO:
-      return state.unshift(todo(state, action))
-    case DELETE_TODO:
-      return state.filter(x => x.get('id') !== action.id)
-    case MARK_TODO_DONE:
-      return state.map(x => x.get('id') === action.id ? todo(x, action) : x)
-    case MARK_TODO_UNDONE:
-      return state.map(x => x.get('id') === action.id ? todo(x, action) : x)
-    case MARK_ALL_TODOS_DONE:
-      return state.map(x => x.merge(Immutable.Map({completed: true})))
-    case MARK_ALL_TODOS_UNDONE:
-      return state.map(x => x.merge(Immutable.Map({completed: false})))
-    case CLEAR_ALL_TODOS:
-      return Immutable.List()
-    default:
-      return state
+  const reducers = {
+    [ADD_TODO]: () => state.unshift(todo(state, action)),
+    [DELETE_TODO]: () => state.filter(x => x.get('id') !== action.id),
+    [MARK_TODO_DONE]: () => state.map(x => x.get('id') === action.id ? todo(x, action) : x),
+    [MARK_TODO_UNDONE]: () => state.map(x => x.get('id') === action.id ? todo(x, action) : x),
+    [MARK_ALL_TODOS_DONE]: () => state.map(x => x.merge(Immutable.Map({completed: true}))),
+    [MARK_ALL_TODOS_UNDONE]: () => state.map(x => x.merge(Immutable.Map({completed: false}))),
+    [CLEAR_ALL_TODOS]: () => Immutable.List(),
+    DEFAULT: () => state
   }
+  return (reducers[action.type] || reducers.DEFAULT)()
 }
