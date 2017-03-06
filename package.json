@@ -5,16 +5,21 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --watch --hot",
+    "dev": "webpack-dev-server --watch --hot --inline",
     "build": "jest && flow && webpack --progress -p && mv ./dist/index.html . && mv ./dist/bundle.js .",
     "test": "jest",
     "cov": "jest --coverage",
     "test:watch": "npm test -- --watch"
   },
   "jest": {
-    "collectCoverageFrom": ["**/*.{js,jsx}"],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}"
+    ],
     "coverageDirectory": "./coverage/",
-    "coveragePathIgnorePatterns": ["./coverage", "webpack.config.js"],
+    "coveragePathIgnorePatterns": [
+      "./coverage",
+      "webpack.config.js"
+    ],
     "notify": true
   },
   "dependencies": {
@@ -37,6 +42,7 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.26.1",
     "flow-bin": "^0.38.0",
     "html-loader": "^0.4.4",

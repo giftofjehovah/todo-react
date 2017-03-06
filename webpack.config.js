@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
   entry: ['whatwg-fetch', './src/index.js'],
-  devtool: 'source-map',
+  devtool: 'cheap-eval-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -18,7 +18,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      hash: true
+      hash: false
     })
   ],
   devServer: {
