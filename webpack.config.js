@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
   entry: ['whatwg-fetch', './src/index.js'],
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
